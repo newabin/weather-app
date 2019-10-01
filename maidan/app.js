@@ -5,6 +5,7 @@ const geocode = require('./utilis/geocode')
 const forecast = require('./utilis/forecast')
 
 const app = express()
+const port = process.env.PORT || 4444
 
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialPath = path.join(__dirname,'../templates/partials')
@@ -80,6 +81,6 @@ app.get('*',(req,res)=>{
     })
 })
 
-app.listen(4444,()=>{
-    console.log('Listening at port 4444')
+app.listen(port,()=>{
+    console.log('Listening at port :'+port)
 })

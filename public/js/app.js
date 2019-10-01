@@ -3,6 +3,7 @@ const search = document.querySelector('input')
 const message1 = document.querySelector('#message-1')
 const message2 = document.querySelector('#message-2')
 
+
 weatherForm.addEventListener('submit', (event)=>{
 
     event.preventDefault()
@@ -15,7 +16,7 @@ weatherForm.addEventListener('submit', (event)=>{
         message1.textContent = "Please Enter the Address"
         message2.textContent = ""
     }else{
-        fetch('http://localhost:4444/weather?search='+location).then((response)=>{
+        fetch('/weather?search='+location).then((response)=>{
             response.json().then((data)=>{
                 if(data.error){
                     message1.textContent = data.error
