@@ -23,14 +23,36 @@ weatherForm.addEventListener('submit', (event)=>{
                     message2.textContent = ""
                 }else{
                     message1.textContent = data.location
-                    message2.textContent = data.Data
-                    console.log(data.location)
-                    console.log(data.Data)
+                    message2.textContent = data.forcastData
                 }
             })
         })
         
             console.log(location)
     }
+
+})
+
+document.querySelector('#show-mylocation').addEventListener('click', ()=>{
+    if(!navigator.geolocation){
+        return alert('Geolocation is not supported in your browser!')
+    }
+    message1.textContent = "Loading..."
+    message2.textContent = ""
+
+    navigator.geolocation.getCurrentPosition((position)=>{
+        fetch('/myweather?latitude='+position.coords.latitude+'&longitude='+position.coords.longitude).then((response)=>{
+            response.json().then((data)=>{
+                if(data.error){
+                    message1.textContent = data.error
+                    message2.textContent = ""
+                }else{
+                    message1.textContent = data.address
+                    message2.textContent = data.forcastData
+                }
+            })
+        })
+
+    })
 
 })

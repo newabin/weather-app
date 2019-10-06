@@ -34,7 +34,7 @@ app.get('/about', (req,res)=>{
 app.get('/help', (req,res)=>{
     res.render('help',{
         title : 'Help Page',
-        helpText : 'This is some helping text',
+        helpText : 'Coming Soon....',
         name : 'Created by Pravinewa'
     })
 })
@@ -51,18 +51,30 @@ app.get('/weather', (req, res) =>{
                 return res.send({ error })      
             }
 
-            forecast( latitude, longitude,(error, foreacstData) =>{
+            forecast( latitude, longitude,(error, {forcastData}) =>{
                 if(error){
                     return res.send({ error })
                 }
                 res.send({
-                    Data : foreacstData,
+                    forcastData,
                     location,
                     address : req.query.search 
 
                 })
             })
         })
+})
+
+app.get('/myweather',(req, res)=>{
+    forecast( req.query.latitude, req.query.longitude,(error, {forcastData, address}) =>{
+        if(error){
+            return res.send({ error })
+        }
+        res.send({
+            forcastData,
+            address
+        })
+    })
 })
 
 app.get('/help/*',(req,res)=>{

@@ -49,3 +49,11 @@ button{
     color: #ffffff;
     padding: 8px;
 }
+#show-mylocation{
+    margin-top: 10px;
+    width: 261px;
+}
+#main-inside-or{
+    color: gray;
+    padding-left: 100px;
+}
